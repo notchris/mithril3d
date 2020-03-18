@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    font-kerning: auto;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #1A1A1A;
+}
+
+html, body, #app {
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+}
+
+button {
+    outline: none !important;
+}
+
+/** Styles **/
+
+.container {
+    width: 100%;
+    height: calc(100% - 52px);
+    position: absolute;
+    top: 28px;
+    left: 0;
+}
+
+.render {
+    width: 100%;
+    height: 100%;
+    background: #1D1D1D;
+}
+
+/** Splitpane **/
+.splitter-pane {
+    background: #1D1D1D;
+}
+.splitter-pane-resizer {
+    border: none !important;
+    opacity: 1 !important;
+    background: #AAA !important;
+}
+.splitter-pane-resizer.vertical {
+    width: 2px !important;
+    margin-left: -1px !important;
+}
+.splitter-pane-resizer.horizontal {
+    height: 2px !important;
+    margin-top: -1px !important;
+}
+
+/** Windows **/
+
+.windows {
+    position: absolute;
+    z-index: 8888 !important;
+}
+
+.window {
+    background-color: #333 !important;
+}
+
+.titlebar {
+    background: #333 !important;
+    color: #CCC;
+}
