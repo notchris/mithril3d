@@ -54,9 +54,14 @@ import Tools from './components/Tools.vue';
 import * as THREE from 'three';
 import OrbitControls from 'orbit-controls-es6';
 import { TransformControls } from './assets/js/TransformControls';
+//import SkewControls from './assets/js/SkewControls';
+
+const _ = require('lodash');
+//const eventBus = new THREE.EventDispatcher();
 
 let resize;
 let tcontrols;
+let scontrols;
 let transformMode = 'translate';
 let createObject;
 
@@ -316,6 +321,15 @@ export default {
       boxlist.push(helper);
       wireframelist.push(wireframe);
 
+      /*scontrols = new SkewControls(this.scene, rendererB, cameraB, eventBus);
+      scontrols.attach(mesh);
+      eventBus.addEventListener('update', () => {
+        wireframe.position.copy(mesh.position);
+        wireframe.scale.copy(mesh.scale);
+        wireframe.rotation.copy(mesh.rotation);
+        helper.setFromObject(mesh);
+      });*/
+
       mesh.layers.set(1);
       wireframe.layers.set(9);
     };
@@ -378,6 +392,8 @@ export default {
         });
       });
       this.scene.add(tcontrols);
+
+
     };
 
     const setSelected = (mesh, renderer, camera) => {
@@ -396,7 +412,7 @@ export default {
         }
       });
       r.domElement.addEventListener('mousemove', (e) => {
-        if (onTransformer) return;
+        if (onTransformer || scontrols && scontrols.selectedHelper) return;
         if (r === rendererA) {
           activeRenderer = rendererA;
           const b = r.domElement.getBoundingClientRect();
@@ -582,11 +598,11 @@ export default {
     animate();
   },
   methods: {
-    resize () {
+    resize: _.debounce(() => {
       if (resize) {
         resize();
       }
-    },
+    }, 200),
     resizeLeft (p) {
       this.$refs.panesRight.percent = p;
       this.resize();

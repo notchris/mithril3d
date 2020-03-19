@@ -10,6 +10,7 @@
           <button @click="setTool('rotate')" :class="[tool === 'rotate' ? 'active': '']" type="button"><i class="mdi mdi-rotate-3d-variant"></i></button>
         </div>
       </div>
+      <div class="group"><button @click="setTool('anchor')" :class="[tool === 'anchor' ? 'active': '']" type="button"><i class="mdi mdi-anchor"></i></button></div>
     </div>
   </hsc-window>
 </template>
